@@ -99,5 +99,30 @@ fetch('https://fakestoreapi.com/products')
       `;
     });
   }
+function displayCart() {
+    let cartContainer = document.getElementById('cart-list');
+    cartContainer.innerHTML = '';
+    let totalPrice = 0;
+  
+    cart.forEach(item => {
+      totalPrice += item.price * item.quantity;
+      cartContainer.innerHTML += `
+        <div class="cart-item">
+          <img src="${item.image}" alt="${item.title}">
+          <p>${item.title}</p>
+          <p>₹${item.price}</p>
+          <p>Quantity: ${item.quantity}</p>
+          <button onclick="removeFromCart(${item.id})">Remove</button>
+        </div>
+      `;
+    });
+    cartContainer.innerHTML += `
+      <div class="total-price">
+        <h3>Total Price: ₹${totalPrice.toFixed(2)}</h3>
+      </div>
+    `;
+  }
+  
+  
   
   
